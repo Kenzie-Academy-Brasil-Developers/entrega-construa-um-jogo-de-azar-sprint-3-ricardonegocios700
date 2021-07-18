@@ -1,6 +1,39 @@
 td {
   width: 30px;
   height: 30px;
-  border: 1px solid blue;
+  border: 1px solid black;
   text-align: center;
+  font-weight: 600;
+  background-color: paleturquoise;
+}
+td:hover {
+  background-color: cadetblue;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+main {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+body {
+  background-color:white;
+}
+
+p {
+  margin-top: 10px;
+}
+
+@media only screen and (min-width: 600px) {
+  
+  body {
+    background-color: paleturquoise;
+  }
+  td {
+    background-color: white;
+  }
+
 }

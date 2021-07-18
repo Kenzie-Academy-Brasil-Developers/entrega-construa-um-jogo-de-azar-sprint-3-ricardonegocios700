@@ -45,22 +45,20 @@ function sortearPalavras() {
 
 // a posição tem que estar em uma linha aleatória
 function sortearLinhas() {
-  
   let posicoes = [];
   let linha = "";
   for (let i = 0; posicoes.length < 3; i++) {
-    // a posição tem que estar em uma linha aleatória
     linha = gerarLinha();
     if (posicoes.length == 0) {
       posicoes.push(linha);
     } else {
-      let confirmacao = "false";
+      let confere = "false";
       for (let j = 0; j < posicoes.length; j++) {
         if (posicoes[j] == linha) {
-          confirmacao = "true";
+          confere = "true";
         }
       }
-      if (confirmacao != true) {
+      if (confere != "true") {
         posicoes.push(linha);
       }
     }
@@ -68,29 +66,8 @@ function sortearLinhas() {
   return posicoes;
 }
 
-// tem que receber um calculo assim: (10 - (tamanho da palavra))
-// e sortear a posição de inicio
-function sortearColunas(palavras) {
-  let colunas = [];
-  let coluna = 0;
-  for (i = 0; colunas.length < 3; i++) {
-    coluna = Math.floor(Math.random() * (10 - palavras[i].length)) + 1;
-    if (colunas.length == 0) {
-      colunas.push(coluna);
-    } else {
-      let confirmacao = "false";
-      for (j = 0; j < colunas.length; j++) {
-        if (colunas[j] == coluna) {
-          confirmacao = "true";
-        }
-        if (confirmacao != "true") {
-          colunas.push(coluna);
-        }
-      }
-      }
-  }
-  //return colunas;
-  console.log(colunas);
+function sortearColuna(palavra) {
+  return (Math.floor(Math.random() * (10 - palavra.length)) + 1);
 }
 
 function popularAleatorio() {
@@ -102,26 +79,30 @@ function popularAleatorio() {
     father.appendChild(newElement);
   }
 }
-//popularAleatorio()
+popularAleatorio();
 
 function popularPalavras() {
   let palavras = sortearPalavras();
   let linhas = sortearLinhas();
   let col = 0;
   for (let i = 0; i < linhas.length; i++ ) {
-
     col = sortearColuna(palavras[i]);
     col = linhas[i] * 10 - 10 + col;
-    console.log(col)
-
     for (let j = 0; j < palavras[i].length; j++) {
       let father = document.getElementById("c"+col);
+      father.removeChild(father.firstChild);
       let newElement = document.createElement("span");
       let text = document.createTextNode(palavras[i][j]);
+      //newElement.style.backgroundColor = "white";  // conferir onde estão
       newElement.appendChild(text);
       father.appendChild(newElement);
       col ++;
     }
   }
-  //console.log(palavras.length)
+  let father = document.getElementById("encontrePalavras");
+  let newElement = document.createElement("span");
+  let text = document.createTextNode(palavras);
+  newElement.appendChild(text);
+  father.appendChild(newElement);
 }
+popularPalavras();
